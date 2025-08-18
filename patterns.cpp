@@ -4,6 +4,11 @@
 #include <psapi.h>
 #include <cstring>
 
+HANDLE gmodHandle = nullptr;
+uintptr_t clientBase = 0;
+uintptr_t clientSize = 0;
+uintptr_t m_bConnected_addr = 0;
+
 bool GetModuleInfo(DWORD pid, const wchar_t* moduleName, uintptr_t& base, uintptr_t& size) {
     base = 0;
     size = 0;
@@ -38,6 +43,9 @@ namespace patterns {
     SIZE_T armor_offs = 0xCC;
     SIZE_T pos_offs = 0x308;
     SIZE_T ang_offs = 0x1E4;
+
+    const char* m_bconnected_pattern = "\xB8\xDC\x20\x00\x00\x48\x8D\x15\x00\x00\x00\x00\x48\x8D\x4D\x00\xE8\x00\x00\x00\x00";
+    const char* m_bconnected_mask = "xxxxxxx????xxx?x????";
 }
 
 bool DataCompare(const BYTE* data, const BYTE* pattern, const char* mask) {
@@ -118,4 +126,15 @@ std::vector<ply> patterns::GetPlayers(HANDLE hProcess, uintptr_t entityListAddr,
     }
 
     return players;
+}
+
+bool patterns::b_connected() {
+    if (!gmodHandle || !m_bConnected_addr)
+        return false;
+
+    bool result = false;
+    if (ReadProcessMemory(gmodHandle, (LPCVOID)m_bConnected_addr, &result, sizeof(result), nullptr)) {
+        return result;
+    }
+    return false;
 }

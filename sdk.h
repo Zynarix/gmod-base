@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <array>
 
 struct Vector3 {
     float x, y, z;
@@ -13,7 +15,50 @@ struct Vector3 {
     Vector3 self() const {
         return *this;
     }
+
+    Vector3 operator-(const Vector3& vec) const {
+        return Vector3(x - vec.x, y - vec.y, z - vec.z);
+    }
 };
+
+struct Vec2 {
+    float x, y;
+
+    Vec2() : x(0), y(0) {}
+    Vec2(float xx, float yy) : x(xx), y(yy) {}
+
+    Vec2 operator+(const Vector3& other) const {
+        return Vec2(x + other.x, y + other.y);
+    }
+
+    Vec2 self() const {
+        return *this;
+    }
+
+    Vec2 operator-(const Vector3& vec) const {
+        return Vec2(x - vec.x, y - vec.y);
+    }
+};
+
+struct Angle3 {
+    float pitch, yaw, roll;
+
+    Angle3() : pitch(0), yaw(0), roll(0) {}
+    Angle3(float p, float y, float r) : pitch(p), yaw(y), roll(r) {}
+
+    Angle3 operator+(const Angle3& other) const {
+        return Angle3(pitch + other.pitch, yaw + other.yaw, roll + other.roll);
+    }
+
+    Angle3 self() const {
+        return *this;
+    }
+
+    Angle3 operator-(const Angle3& other) const {
+        return Angle3(pitch - other.pitch, yaw - other.yaw, roll - other.roll);
+    }
+};
+
 
 
 struct ent {

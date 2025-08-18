@@ -10,8 +10,10 @@ bool GetModuleInfo(DWORD pid, const wchar_t* moduleName, uintptr_t& base, uintpt
 namespace patterns {
     extern const char* entlist_pattern;
     extern const char* entlist_mask;
+    bool b_connected();
+    //std::string s_serverip();
 
-    // ־פסועû ט נאחלונû
+    // Offsests and sizes
     extern SIZE_T entsz;
     extern SIZE_T hp_offs;
     extern SIZE_T armor_offs;

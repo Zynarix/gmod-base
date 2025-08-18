@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main", "main.vcxproj", "{D6D5CC19-6340-452D-B94E-DC25B3C95231}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{1EE522DF-39AF-4349-8838-A7FED5E248F3}"
-	ProjectSection(SolutionItems) = preProject
-		dll\dllmain.cpp = dll\dllmain.cpp
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

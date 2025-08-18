@@ -56,10 +56,10 @@ int main() {
     print("Process opened successfully.");
 
     print("\n[Memory Test] Allocating memory in remote process...");
-    SIZE_T sizeToAllocate = 1024;
+    SIZE_T sizeToAllocate = 8192; // two pages
     LPVOID remoteAddr = VirtualAllocEx(game, nullptr, sizeToAllocate, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
     if (remoteAddr) {
-        std::string testString = "Craxis Memory Test Successful!";
+        std::string testString = "All is working!";
         print("[Memory Test] Writing payload...");
         WriteProcessMemory(game, remoteAddr, testString.c_str(), testString.size() + 1, nullptr);
 
@@ -85,6 +85,11 @@ int main() {
         return 1;
     }
     std::cout << "Module client.dll found at: 0x" << std::hex << moduleBase << " with size: " << moduleSize << std::dec << std::endl;
+
+    if (patterns::b_connected() == false) {
+        print("Server not found");
+        return 1;
+    }
 
     uintptr_t entityListAddr = patterns::GetEntityList(game, moduleBase, moduleSize);
     if (!entityListAddr) {
