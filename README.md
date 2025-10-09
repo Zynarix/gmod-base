@@ -17,9 +17,9 @@
 
 ### Roadmap & Steps
 
-#### **1. Aimbot (40%)**
+#### **1. Aimbot (20%)**
 
-* [x] Basic target detection
+* [ ] Basic target detection
 * [x] Aim calculation
 * [ ] Smooth aim transitions
 * [ ] Target prioritization (distance, health, visibility)
@@ -61,7 +61,8 @@
 
 ### **Future Ideas**
 
-* Config menu (UI for adjusting cheats)
+* Ingame hooks
+* Config menu
 * Anti-cheat bypass modules
 * Plugin system for third-party cheat features
 
