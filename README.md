@@ -1,3 +1,5 @@
+# ABONDED❗
+
 # 📌 GMOD BASE — Roadmap
 
 ## Made for educational purposes only ❗
@@ -8,7 +10,7 @@
 
 | Feature    | Progress |
 | ---------- | -------- |
-| Aimbot     | 40%      |
+| Aimbot     | 20%      |
 | ESP        | 0%       |
 | Movement   | 0%       |
 | ScriptHook | 0%       |
