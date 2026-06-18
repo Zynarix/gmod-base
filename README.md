@@ -1,70 +1,67 @@
-# ABONDED❗
+# 🚀 GMOD BASE — Development Roadmap
 
-# 📌 GMOD BASE — Roadmap
-
-## Made for educational purposes only ❗
-
-**Base** for external cheats with an easy-to-use SDK and API, providing no Lua access to game data. Regular updates planned.
-
-### Current Progress
-
-| Feature    | Progress |
-| ---------- | -------- |
-| Aimbot     | 20%      |
-| ESP        | 0%       |
-| Movement   | 0%       |
-| ScriptHook | 0%       |
+### *By Zynarix for everyone.*
 
 ---
 
-### Roadmap & Steps
+## 🛠 Development Path
 
-#### **1. Aimbot (20%)**
+### 🏗 Phase 0: Foundation (25% Complete)
 
-* [ ] Basic target detection
-* [x] Aim calculation
-* [ ] Smooth aim transitions
-* [ ] Target prioritization (distance, health, visibility)
-* [ ] Configurable FOV and keybinds
-* [ ] Anti-detection improvements
-
----
-
-#### **2. ESP (0%)**
-
-* [ ] Basic player outlines
-* [ ] Health and name display
-* [ ] Weapon ESP
-* [ ] Configurable colors and distances
-* [ ] Advanced bone ESP
-* [ ] Performance optimization
+* ✅ **EntityList**
+* ⬜ **Signatures**
+* ⬜ **Cvars**
+* ⬜ **Hooks**
+* ⬜ **Memory Patches**
+* ⬜ **Trace Cleaning**
 
 ---
 
-#### **3. Movement (0%)**
+### 🎯 Phase 1: Precision Aimbot
 
-* [ ] Bunnyhop implementation
-* [ ] Auto-strafe
-* [ ] Speed modifiers
-* [ ] Lag compensation
-* [ ] Configurable hotkeys
-
----
-
-#### **4. ScriptHook (0%)**
-
-* [ ] Core hook framework
-* [ ] Script injection support
-* [ ] Hook management UI
-* [ ] Safety & anti-crash handling
-* [ ] Documentation for API hooks
+* ⬜ Target detection logic
+* ⬜ Vector math for aim calculation
+* ⬜ Smooth interpolation (Linear, Bezier, etc.)
+* ⬜ Priority-based target acquisition
+* ⬜ Configurable FOV & Activation keys
+* ⬜ Anti-detection hardening
 
 ---
 
-### **Future Ideas**
+### 👁 Phase 2: Tactical ESP (Extra Sensory Perception)
 
-* Ingame hooks
-* Config menu
-* Anti-cheat bypass modules
-* Plugin system for third-party cheat features
+* ⬜ Basic bounding boxes
+* ⬜ Dynamic info tags
+* ⬜ Weapon & Entity identification
+* ⬜ Customizable styling
+* ⬜ Skeleton/Bone visualization
+* ⬜ Render optimization
 
+---
+
+### ⚡ Phase 3: Movement Mastery
+
+* ⬜ Intelligent Bunnyhop
+* ⬜ Frame-perfect Auto-strafe
+* ⬜ Velocity & Speed modifiers
+* ⬜ Lag-compensation handling
+* ⬜ Dynamic hotkey integration
+
+---
+
+### 🔗 Phase 4: ScriptHook Framework
+
+* ⬜ Core hooking architecture
+* ⬜ Native injection pipeline
+* ⬜ Hook Management UI
+* ⬜ Crash prevention & exception handling
+* ⬜ API documentation for future module support
+
+---
+
+## 🔮 Future Horizons
+
+* **Ingame Hooks:** Deep integration for real-time manipulation.
+* **Anti-Cheat Bypasses:** Dedicated modules for engine-level protection.
+* **Plugin System:** Allowing community-driven feature expansion.
+* **Lua API:** Direct scriptable access to game internals.
