@@ -5,9 +5,34 @@
 #include <cstring>
 
 HANDLE gmodHandle = nullptr;
+DWORD gmodPid = 0;
 uintptr_t clientBase = 0;
 uintptr_t clientSize = 0;
-uintptr_t m_bConnected_addr = 0;
+uintptr_t engineBase = 0;
+uintptr_t engineSize = 0;
+
+DWORD FindProcessId(const std::wstring& processName) {
+    HANDLE hSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hSnap == INVALID_HANDLE_VALUE)
+        return 0;
+
+    PROCESSENTRY32W pe;
+    pe.dwSize = sizeof(pe);
+    DWORD pid = 0;
+
+    if (Process32FirstW(hSnap, &pe)) {
+        do {
+            if (_wcsicmp(pe.szExeFile, processName.c_str()) == 0) {
+                pid = pe.th32ProcessID;
+                break;
+            }
+        } while (Process32NextW(hSnap, &pe));
+    }
+
+    CloseHandle(hSnap);
+    return pid;
+}
+
 
 bool GetModuleInfo(DWORD pid, const wchar_t* moduleName, uintptr_t& base, uintptr_t& size) {
     base = 0;
@@ -43,9 +68,6 @@ namespace patterns {
     SIZE_T armor_offs = 0xCC;
     SIZE_T pos_offs = 0x308;
     SIZE_T ang_offs = 0x1E4;
-
-    const char* m_bconnected_pattern = "\xB8\xDC\x20\x00\x00\x48\x8D\x15\x00\x00\x00\x00\x48\x8D\x4D\x00\xE8\x00\x00\x00\x00";
-    const char* m_bconnected_mask = "xxxxxxx????xxx?x????";
 }
 
 bool DataCompare(const BYTE* data, const BYTE* pattern, const char* mask) {
@@ -128,13 +150,28 @@ std::vector<ply> patterns::GetPlayers(HANDLE hProcess, uintptr_t entityListAddr,
     return players;
 }
 
-bool patterns::b_connected() {
-    if (!gmodHandle || !m_bConnected_addr)
+bool patterns::ingame() {
+    if (!gmodHandle || !engineBase)
         return false;
 
     bool result = false;
-    if (ReadProcessMemory(gmodHandle, (LPCVOID)m_bConnected_addr, &result, sizeof(result), nullptr)) {
+    if (ReadProcessMemory(gmodHandle, (LPCVOID)(engineBase + 26 + 7), &result, sizeof(result), nullptr)) {
         return result;
     }
     return false;
+}
+
+bool patterns::Initialize() {
+    while (!gmodPid) {
+        print("waiting for game...");
+        gmodPid = FindProcessId(L"gmod.exe");
+        Sleep(1000);
+    }
+    gmodHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, gmodPid);
+    if (!gmodHandle) { return true; }
+    print("got hadle");
+}
+
+void patterns::Shutdown() {
+    CloseHandle(gmodHandle);
 }

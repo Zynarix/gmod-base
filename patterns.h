@@ -10,7 +10,9 @@ bool GetModuleInfo(DWORD pid, const wchar_t* moduleName, uintptr_t& base, uintpt
 namespace patterns {
     extern const char* entlist_pattern;
     extern const char* entlist_mask;
-    bool b_connected();
+    bool ingame();
+    bool Initialize();
+    void Shutdown();
     //std::string s_serverip();
 
     // Offsests and sizes

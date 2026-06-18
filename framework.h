@@ -12,3 +12,5 @@
 
 #include "patterns.h"
 #include "sdk.h"
+
+#define print(x) std::cout << x << std::endl
